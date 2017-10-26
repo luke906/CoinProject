@@ -23,7 +23,7 @@ class CoinoneAPIManager(object):
         signature = hmac.new(str(secret_key).upper().encode(), encoded_payload, hashlib.sha512)
         return signature.hexdigest()
 
-    def get_response(self, payload, action):
+    def get_response(self, payload, action=None):
 
         URL = 'https://api.coinone.co.kr/v2/account/balance/'
 
