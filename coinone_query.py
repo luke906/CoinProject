@@ -1,8 +1,8 @@
 import base64
-import simplejson as json
+import json
 import hashlib
 import hmac
-import httplib2, requests
+import requests
 import time
 
 ACCESS_TOKEN = '48fd6387-7fb9-4976-9a87-6c8607f3d148'
