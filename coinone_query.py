@@ -2,7 +2,7 @@ import base64
 import simplejson as json
 import hashlib
 import hmac
-import httplib2
+import httplib2, requests
 import time
 
 ACCESS_TOKEN = '48fd6387-7fb9-4976-9a87-6c8607f3d148'
@@ -45,13 +45,13 @@ def get_response(payload, action=None):
         'X-COINONE-PAYLOAD': encoded_payload,
         'X-COINONE-SIGNATURE': get_signature(encoded_payload, SECRET_KEY)
     }
-    http = httplib2.Http()
-    response, content = http.request(URL, 'POST', headers=headers, body=encoded_payload)
+
+    content = requests.post(URL, data=encoded_payload, headers=headers)
     return content
 
 def get_result(action):
-    content = get_response(PAYLOAD, action)
-    content = json.loads(content)
+    response = get_response(PAYLOAD, action)
+    content = response.json()
 
     return content
 
