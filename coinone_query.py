@@ -20,8 +20,7 @@ def get_encoded_payload(payload):
     return encoded_json
 
 def get_signature(encoded_payload, secret_key):
-    secret_key_byte = str(secret_key).upper().encode()
-    signature = hmac.new(secret_key_byte, encoded_payload, hashlib.sha512)
+    signature = hmac.new(str(secret_key).upper().encode(), encoded_payload, hashlib.sha512)
     return signature.hexdigest()
 
 def get_response(payload, action=None):
